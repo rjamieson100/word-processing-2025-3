@@ -175,6 +175,39 @@ def Anagrams_Minus_One(word):
 
     return arr_of_valid_words
 
+def mostletters(search):
+    wordlist = open("wordlist.txt", 'r')
+    wordlist = wordlist.read().splitlines()
+    listlen = len(wordlist) - 1
+    for i in (range(listlen)):
+        for i2 in(range(listlen)):
+            letcount1 = 0
+            letcount2 = 0
+            wrd1 = wordlist[i2]
+            wrd1list = list(wrd1)
+            wrd2 = wordlist[i2 + 1]
+            wrd2list = list(wrd2)
+            for i3 in range(len(wrd1list)):
+                if search == wrd1list[i3]:
+                    letcount1 += 1
+            for i3 in range(len(wrd2list)):
+                if search == wrd2list[i3]:
+                    letcount2 += 1
+            if letcount1 > letcount2:
+                temp = wrd2
+                wordlist[i2 + 1] = wrd1
+                wordlist[i2] = temp
+            elif letcount1 == letcount2 and len(wrd1) < len(wrd2):
+                temp = wrd2
+                wordlist[i2 + 1] = wrd1
+                wordlist[i2] = temp
+            elif letcount1 == letcount2 and len(wrd1) == len(wrd2):
+                if wrd1list[0] == search and wrd2list != search:
+                    temp = wrd2
+                    wordlist[i2 + 1] = wrd1
+                    wordlist[i2] = temp
+    return wordlist
+
 
 def menu_phase(phase):
     
@@ -238,8 +271,9 @@ def function_menu():
         ##Instert call for All vowels
         print("All Vowels")
     elif selection == 2:
-        ##Instert call for 'Merica
-        print("Merica")
+        ##Most Letters
+        word = input("Word: ")
+        return mostletters(word)
     elif selection == 3:
         ##Instert call for Backwards
         print("Merica")
