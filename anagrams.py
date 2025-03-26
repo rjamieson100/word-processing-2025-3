@@ -5,8 +5,9 @@ Precondition: word must be a valid word w/ alphanumeric characters only.
 # @param word The word of interest that we will return all the possible words with
 # @return An array of words that are anagrams of our word
 # Runtime: O(nk) where k is the length of the word, and n is the length of the text file.
-    Contains 1 nested loop which iterates over the length of the text file and the length
-    of the inputted word, thus having O(nk) where n is the size of the text file and k
+    Contains 1 nested loop: one loop which iterates over the length of the text file and one 
+    loop that interates over the length of the inputted word. 
+    Thus having O(nk) where n is the size of the text file and k
     is the length of the word inputted.
 
 '''
@@ -57,7 +58,6 @@ def Anagrams_Minus_One(word):
     f = open("words.txt", "r")
     
     words = f.read().splitlines()
-    #figure out how to split this instantly
     word_letters = {} # the dictionary / map containing all freq of letters in word
     arr_of_letters = [] # an array containing all dicts of freq of letters in word in txt
     arr_of_valid_words = [] # the valid words that will be returned by the function
@@ -66,7 +66,7 @@ def Anagrams_Minus_One(word):
         word_letters[letter] = word_letters.get(letter, 0) + 1
     
     for x in words:
-        if(len(x) == total_length - 1): # ensures that the word in file is valid
+        if(len(x) == total_length - 1): # ensures that the word in file is valid (one letter less than the inputted word)
             letters_in_arr = {"original_word": x}
             for letter in x:
                 letters_in_arr[letter] = letters_in_arr.get(letter,0) + 1
